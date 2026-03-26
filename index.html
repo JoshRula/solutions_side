@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trew Modex26</title>
+</head>
+<body>
+  <div id="bg_image"><img src="assets/background_images/background_image.png" alt="background" width="1080px" height="1920px"></div>
+  
+  <div id="viewport" class="solid">
+    <div id="banner">
+      <div id="logo"><img src="assets/logo.png" alt="Trew" width="411px" height="123px" loading="lazy"></div>
+      <div id="usa"><img src="assets/usa.png" alt="USA" width="176px" height="123px" loading="lazy"></div>
+      <div id="topPlaces"><img src="assets/topPlaces.png" alt="top places" width="82px" height="123px" loading="lazy">  </div>
+    
+    </div>
+    <div id="vector_logo"><img src="assets/logo.svg" alt="vector" width="817px"></div>
+    <div id="video_loop" class="loop_thumb"><a href="#" data-video-src="assets/videos/loop.mp4" aria-label="Open loop video">
+    <img src="assets/thumbnails/loop.jpg" alt="Video 1 thumbnail" loading="lazy">
+  </a></div>
+    <div id="video_1" class="thumb"><a href="#" data-video-src="assets/videos/video_1.mp4" aria-label="Open video 1">
+    <img src="assets/thumbnails/video_1.jpg" alt="Video 1 thumbnail" loading="lazy">
+  </a></div>
+    <div id="video_2"class="thumb"><a href="#" data-video-src="assets/videos/video_2.mp4" aria-label="Open video 2">
+    <img src="assets/thumbnails/video_2.png" alt="Video 2 thumbnail" loading="lazy">
+  </a></div>
+    <div id="video_3"class="thumb"><a href="#" data-video-src="assets/videos/video_3.mp4" aria-label="Open video 3">
+    <img src="assets/thumbnails/video_3.png" alt="Video 3 thumbnail" loading="lazy">
+  </a></div>
+    <div id="video_4"class="thumb"><a href="#" data-video-src="assets/videos/video_4.mp4" aria-label="Open video 4">
+    <img src="assets/thumbnails/video_4.jpg" alt="Video 4 thumbnail" loading="lazy">
+  </a></div>
+    <div id="video_5"class="thumb"><a href="#" data-video-src="assets/videos/video_5.mp4" aria-label="Open video 5">
+    <img src="assets/thumbnails/video_5.jpg" alt="Video 5 thumbnail" loading="lazy">
+  </a></div>
+  <div id="video_6"class="thumb"><a href="#" data-video-src="assets/videos/video_6.mp4" aria-label="Open video 6">
+    <img src="assets/thumbnails/video_6.jpg" alt="Video 6 thumbnail" loading="lazy">
+  </a></div>
+  <div id="video_7"class="thumb"><a href="#" data-video-src="assets/videos/video_7.mp4" aria-label="Open video 7">
+    <img src="assets/thumbnails/video_7.png" alt="Video 7 thumbnail" loading="lazy">
+  </a></div>
+  <div id="video_8"class="thumb"><a href="#" data-video-src="assets/videos/video_8.mp4" aria-label="Open video 8">
+    <img src="assets/thumbnails/video_8.png" alt="Video 8 thumbnail" loading="lazy">
+  </a></div>
+  <!-- Modal overlay (95% of screen) -->
+  <div id="modalOverlay" class="modal-overlay" aria-hidden="true">
+    <button id="modalClose" class="modal-close" aria-label="Close modal">✕</button>
+    
+    <div class="modal-shell" role="dialog" aria-modal="true">
+      <div class="modal-content">
+        <video id="modalVideo" class="modal-video" controls playsinline preload="metadata"></video>
+      </div>
+    </div>
+</div>
+
+  <script src="main.js"></script>
+</body>
+</html>

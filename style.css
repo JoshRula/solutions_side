@@ -1,0 +1,340 @@
+#bg_image {
+    position: absolute;
+    top: auto;
+    left: -1px;
+    background-image: url("assets/background_images/background_image.png");
+    background-position: center;
+    z-index: -1;
+    overflow: hidden; /* important */
+}
+
+/* Gradient overlay */
+#bg_image::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 110%;
+    background: linear-gradient(
+        to bottom,
+        rgba(36, 132, 198, 0.3),
+        rgba(36,132,198,1)
+    );
+
+    pointer-events: none;
+}
+#vector_logo {
+    position: absolute;
+    top: 284px;
+    left: 142px;
+}
+#viewport {
+     
+    width: 1080px; 
+    height: 1920px;
+}
+#banner {
+    position: absolute;
+    display: flex;              
+    align-items: center;        /* center vertically */
+    background-color: #fff;
+    background-size: contain;
+    background-position: center;
+    top: 0;
+    width: 1082px; 
+    height: 223px;
+}
+#logo {
+    position: fixed;
+    left: 73px;
+}
+#usa {
+    position: fixed;
+    left: 733px;
+}
+#topPlaces {
+    position: fixed;
+    left: 938px;
+}
+#video_loop {
+    position: absolute;
+    top: 392px;
+    left: 4px;
+    width: 1070px; 
+    height: 602px;
+    overflow: hidden; /* add this */
+}
+.loop_thumb {
+    width: 1070px;
+    height: 602px;
+    /* remove object-fit from here; it belongs on the img */
+    display: block;
+}
+
+/* make the loop image fill and crop like other thumbs */
+.loop_thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+#video_1 {
+    position: absolute;
+    top: 1059px;
+    left: 30px;
+     
+
+}
+#video_2 {
+    position: absolute;
+    top: 1059px;
+    left: 380px;
+     
+}
+#video_3 {
+    position: absolute;
+    top: 1059px;
+    left: 730px;
+     
+}
+#video_4 {
+    position: absolute;
+    top: 1304px;
+    left: 30px;
+     
+}
+#video_5 {
+    position: absolute;
+    top: 1304px;
+    left: 380px;
+     
+}
+#video_6 {
+    position: absolute;
+    top: 1304px;
+    left: 730px;
+     
+}
+#video_7 {
+    position: absolute;
+    top: 1549px;
+    left: 207px;
+     
+}
+#video_8 {
+    position: absolute;
+    top: 1549px;
+    left: 557px;
+     
+}
+/* shared thumbnail wrapper */
+.thumb {
+    position: absolute;
+     
+    width: 320px;
+    height: 180px;
+    overflow: hidden;
+}
+/* make the img fill and crop to the box */
+.thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+/* thumbnail zoom effect */
+.thumb,
+.loop_thumb {
+    transition: transform 320ms cubic-bezier(.2,.8,.2,1);
+    transform-origin: center center;
+    will-change: transform;
+    /* ensure position is set (thumbs already absolute) so z-index works */
+    position: absolute;
+}
+
+.thumb.zoomed,
+.loop_thumb.zoomed {
+    transform: scale(1.06);
+    z-index: 100; /* bring above the modal overlay while zooming */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+/* kiosk: fixed canvas, no scrollbars */
+html, body {
+    width: 1080px;
+    height: 1920px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* hide scrollbars */
+    box-sizing: border-box;
+}
+
+/* ensure viewport and large containers don't introduce scrolling */
+#viewport,
+#bg_image,
+#video_loop {
+    overflow: hidden;
+}
+
+/* Modal overlay: 95% of viewport, blue with 70% opacity, center the player */
+.modal-overlay {
+    position: absolute; /* or fixed, based on your preference */
+    inset: 0;
+    display: flex;       /* Always flex, but hidden via opacity */
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 387px; /* push content down */
+    background: rgba(42, 161, 210, 0.7);
+    z-index: 10003;
+
+    /* --- Fade Transition --- */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    pointer-events: none; /* Prevent clicks while invisible */
+}
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto; /* Re-enable clicks when visible */
+}
+
+/* shell keeps the overlay padding and sizing */
+.modal-shell{
+    width: 95vw;
+    height: 95vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none; /* let content receive clicks */
+}
+
+/* white player container centered inside the blue overlay */
+.modal-content{
+    width: 95%;
+    max-width: 1500px;
+    height: auto;
+    max-height: 85vh;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    overflow: hidden;
+    pointer-events: auto;
+    position: relative;
+    z-index: 10004; /* above the close button */
+}
+
+/* the video fills the white container */
+.modal-video{
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: #000;
+    object-fit: contain;
+    z-index: 10005; /* above all modal elements */
+}
+
+/* simple close button positioned in overlay corner */
+.modal-close{
+    position: fixed;
+    top: 20px;
+    right: 28px;
+    z-index: 10004;
+    background: transparent;
+    color: #fff;
+    border: none;
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 6px;
+}
+
+/* --- Flash animation for thumbnails --- */
+.thumb.flash,
+.loop_thumb.flash {
+    position: relative;
+    z-index: 10;
+}
+
+/* chrome frame that fades in around the thumb */
+.thumb.flash::after,
+.loop_thumb.flash::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 6px;
+    pointer-events: none;
+    border: 4px solid rgba(255,255,255,0.0);
+    box-shadow: 0 0 0 rgba(255,255,255,0);
+    animation: chromeFade 7s ease-in-out forwards;
+}
+
+/* moving orange gradient that sweeps from bottom-left to top-right */
+.thumb.flash::before,
+.loop_thumb.flash::before {
+    content: "";
+    position: absolute;
+    left: -150%;
+    top: 150%;
+    width: 300%;
+    height: 300%;
+    pointer-events: none;
+    background: linear-gradient(45deg,
+        rgba(255,140,0,0) 0%,
+        rgba(255,140,0,0.08) 40%,
+        rgba(255,140,0,0.55) 50%,
+        rgba(255,140,0,0.08) 60%,
+        rgba(255,140,0,0) 100%);
+    mix-blend-mode: screen;
+    transform: translate3d(-150%,150%,0) rotate(0deg);
+    animation: moveGradient 7s cubic-bezier(.2,.8,.2,1) forwards;
+    border-radius: 6px;
+}
+
+@keyframes chromeFade {
+    0% { border-color: rgba(255,255,255,0); box-shadow: 0 0 0 rgba(255,255,255,0); }
+    12% { border-color: rgba(255,255,255,0.95); box-shadow: 0 6px 18px rgba(0,0,0,0.25); }
+    30% { border-color: rgba(255,255,255,0.85); box-shadow: 0 10px 30px rgba(0,0,0,0.35); }
+    100% { border-color: rgba(255,255,255,0.85); box-shadow: 0 10px 30px rgba(0,0,0,0.35); }
+}
+
+@keyframes moveGradient {
+    0% { transform: translate3d(-150%,150%,0) rotate(0deg); opacity: 0; }
+    8% { opacity: 1; }
+    50% { transform: translate3d(0%,0%,0) rotate(6deg); opacity: 1; }
+    92% { opacity: 0.6; }
+    100% { transform: translate3d(150%,-150%,0) rotate(12deg); opacity: 0; }
+}
+
+/* variations for the five possible choices — small differences in delay/rotation */
+.thumb.flash-1::before,
+.loop_thumb.flash-1::before { animation-delay: 0s; transform-origin: 0 100%; }
+.thumb.flash-2::before,
+.loop_thumb.flash-2::before { animation-delay: 0.15s; transform-origin: 20% 80%; }
+.thumb.flash-3::before,
+.loop_thumb.flash-3::before { animation-delay: 0.3s; transform-origin: 10% 90%; }
+.thumb.flash-4::before,
+.loop_thumb.flash-4::before { animation-delay: 0.45s; transform-origin: 5% 95%; }
+.thumb.flash-5::before,
+.loop_thumb.flash-5::before { animation-delay: 0.6s; transform-origin: 15% 85%; }
+
+.thumb.flash-1::after,
+.loop_thumb.flash-1::after { animation-delay: 0s; }
+.thumb.flash-2::after,
+.loop_thumb.flash-2::after { animation-delay: 0.12s; }
+.thumb.flash-3::after,
+.loop_thumb.flash-3::after { animation-delay: 0.24s; }
+.thumb.flash-4::after,
+.loop_thumb.flash-4::after { animation-delay: 0.36s; }
+.thumb.flash-5::after,
+.loop_thumb.flash-5::after { animation-delay: 0.48s; }
+
+/* ensure the animated overlay doesn't block pointer events */
+.thumb.flash::before,
+.thumb.flash::after,
+.loop_thumb.flash::before,
+.loop_thumb.flash::after { pointer-events: none; }
